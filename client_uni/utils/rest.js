@@ -6,7 +6,7 @@
  * gitee: https://gitee.com/zhuige_com/jiangqie_kafei
  * Copyright © 2020-2024 www.zhuige.com All rights reserved.
  */
-const Auth = require("./auth.js");
+import Auth from "./auth.js";
 
 /**
  * request封装
@@ -141,7 +141,7 @@ function post(url, data = {}) {
 	return request(url, data, 'POST');
 }
 
-module.exports = {
+export default {
 	get,
 	post,
 	upload,

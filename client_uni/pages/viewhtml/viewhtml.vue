@@ -14,8 +14,8 @@
 	 * Copyright © 2020-2024 www.zhuige.com All rights reserved.
 	 */
 
-	const Api = require("@/utils/api.js");
-	const Rest = require("@/utils/rest.js");
+	import Api from "@/utils/api.js";
+	import Rest  from "@/utils/rest.js";
 
 	export default {
 		components: {

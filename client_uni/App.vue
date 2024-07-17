@@ -1,6 +1,6 @@
 <script>
 	/*
-	 * 酱茄小程序开源版 v2.4.12
+	 * 酱茄小程序开源版 v2.5.2
 	 * 作者: 追格
 	 * 文档：https://www.zhuige.com/docs/zxfree.html
 	 * github: https://github.com/zhuige-com/jiangqie_kafei
@@ -9,7 +9,7 @@
 	 */
 	import Vue from 'vue';
 
-	const Auth = require("./utils/auth.js");
+	import Auth from "./utils/auth.js";
 	
 	export default {
 		globalData: {

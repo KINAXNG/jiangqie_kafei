@@ -52,6 +52,6 @@ function clickHref(data) {
 	// });
 }
 
-module.exports = {
+export default {
 	clickHref,
 };

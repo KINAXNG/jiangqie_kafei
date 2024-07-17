@@ -26,6 +26,14 @@ class JiangQie_API_Category_Controller extends JiangQie_API_Base_Controller
 				'permission_callback' => '__return_true',
 			]
 		]);
+
+		//获取分类封面
+		register_rest_route($this->namespace, '/' . $this->module . '/cover', [
+			[
+				'callback' => [$this, 'get_cover'],
+				'permission_callback' => '__return_true',
+			]
+		]);
 	}
 
 	/**
@@ -53,5 +61,18 @@ class JiangQie_API_Category_Controller extends JiangQie_API_Base_Controller
 		}
 
 		return $this->make_success($categories);
+	}
+
+	/**
+	 * 获取分类封面
+	 */
+	public function get_cover($request)
+	{
+		$cat_id = $request->get_param('cat_id');
+		$cover = jiangqie_api_taxonomy_image_url($cat_id);
+		if (!$cover) {
+			$cover = plugins_url("images/cat_cover.png", dirname(__FILE__));
+		}
+		return $this->make_success(['cover' => $cover]);
 	}
 }

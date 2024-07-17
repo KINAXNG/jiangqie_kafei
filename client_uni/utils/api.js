@@ -7,13 +7,13 @@
  * Copyright © 2020-2024 www.zhuige.com All rights reserved.
  */
 
-const Config = require("./config.js");
+import Config from "./config.js";
 
 function makeURL(module, action) {
 	return `https://${Config.JQ_DOMAIN}/wp-json/jiangqie/v1/${module}/${action}`;
 }
 
-module.exports = {
+export default {
 	/**
 	 * 获取首页配置
 	 */
@@ -48,6 +48,11 @@ module.exports = {
 	 * 获取分类 只获取一级分类
 	 */
 	JIANGQIE_CATEGORY_INDEX: makeURL('category', 'index'),
+	
+	/**
+	 * 获取分类 封面
+	 */
+	JIANGQIE_CATEGORY_COVER: makeURL('category', 'cover'),
 
 	/**
 	 * 获取最新文章列表

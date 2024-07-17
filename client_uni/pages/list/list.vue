@@ -3,8 +3,8 @@
 	<view class="container">
 
 		<template v-if="posts.length > 0">
-			<template v-for="(item, index) in posts">
-				<view v-if="index%5==4" :key="index" class="jiangqie-news-block image-wide" :data-id="item.id"
+			<view v-for="(item, index) in posts" :key="index">
+				<view v-if="index%5==4" class="jiangqie-news-block image-wide" :data-id="item.id"
 					@tap.stop="handlerArticleClick">
 					<view class="jiangqie-news-image">
 						<image :src="item.thumbnail" mode="aspectFill"></image>
@@ -24,7 +24,7 @@
 						</view>
 					</view>
 				</view>
-				<view v-else :key="index" class="jiangqie-news-block" :data-id="item.id"
+				<view v-else class="jiangqie-news-block" :data-id="item.id"
 					@tap.stop="handlerArticleClick">
 					<view class="jiangqie-news-image">
 						<image :src="item.thumbnail" mode="aspectFill"></image>
@@ -44,7 +44,7 @@
 						</view>
 					</view>
 				</view>
-			</template>
+			</view>
 
 			<!--加载loadding-->
 			<jiangqie-loadmore :visible="loadding"></jiangqie-loadmore>
@@ -68,10 +68,10 @@
 	 * Copyright © 2020-2024 www.zhuige.com All rights reserved.
 	 */
 
-	const Constants = require("@/utils/constants.js");
-	const Util = require("@/utils/util.js");
-	const Api = require("@/utils/api.js");
-	const Rest = require("@/utils/rest.js");
+	import Constants from "@/utils/constants.js";
+	import Util from "@/utils/util.js";
+	import Api from "@/utils/api.js";
+	import Rest from "@/utils/rest.js";
 	import JiangqieLoadmore from "@/components/loadmore/loadmore";
 	import JiangqieNomore from "@/components/nomore/nomore";
 	import JiangqieNoData from "@/components/nodata/nodata";
@@ -88,6 +88,8 @@
 			this.cat_id = undefined;
 			this.search = undefined;
 			this.track = undefined;
+			
+			this.share_thumb = undefined;
 
 			return {
 				title: undefined,
@@ -110,6 +112,8 @@
 					title: options.title
 				});
 				this.cat_id = options.cat_id;
+				
+				this.loadCatCover();
 			} else if (options.tag_id) {
 				//标签
 				this.title = options.title;
@@ -171,10 +175,21 @@
 		},
 
 		onShareAppMessage() {
-			return {
-				title: getApp().globalData.appName,
-				path: 'pages/index/index'
-			};
+			if (this.cat_id && this.title) {
+				let params = {
+					title: this.title + '_' + getApp().globalData.appName,
+					path: 'pages/list/list?cat_id=' + this.cat_id + '&title=' + this.title
+				};
+				if (this.share_thumb) {
+					params.imageUrl = this.share_thumb;
+				}
+				return params;
+			} else {
+				return {
+					title: getApp().globalData.appName,
+					path: 'pages/index/index'
+				};
+			}
 		},
 
 		// #ifdef MP-WEIXIN
@@ -234,6 +249,17 @@
 					this.pullUpOn = res.data.length >= Constants.JQ_PER_PAGE_COUNT;
 				});
 			},
+			
+			/**
+			 * 加载分类封面
+			 */
+			loadCatCover() {
+				Rest.get(Api.JIANGQIE_CATEGORY_COVER, {
+					cat_id: this.cat_id
+				}).then(res => {
+					this.share_thumb = res.data.cover
+				});
+			}
 		}
 	};
 </script>

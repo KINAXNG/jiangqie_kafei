@@ -174,14 +174,14 @@
 		</view>
 
 		<!-- #ifdef MP-BAIDU -->
-		<view v-if="isShowPainter" isRenderImage style="position: fixed; top: 0;" @longpress="longTapPainter"
+		<view v-if="isShowPainter" style="position: fixed; top: 0;" @longpress="longTapPainter"
 			@click="clickPainter()">
-			<l-painter isRenderImage :board="base" @success="onPainterSuccess" />
+			<l-painter isCanvasToTempFilePath :board="base" @success="onPainterSuccess" />
 		</view>
 		<!-- #endif -->
 
 		<!-- #ifdef MP-WEIXIN || H5 -->
-		<l-painter v-if="isShowPainter" isRenderImage custom-style="position: fixed; left: 200%;" :board="base"
+		<l-painter v-if="isShowPainter" isCanvasToTempFilePath custom-style="position: fixed; left: 200%;" :board="base"
 			@success="onPainterSuccess" />
 		<!-- #endif -->
 	</view>
@@ -200,21 +200,20 @@
 	import JiangqieLoadmore from "@/components/loadmore/loadmore";
 	import jiangqieNomore from "@/components/nomore/nomore";
 	import JiangqieNoData from "@/components/nodata/nodata";
-	import lPainter from '@/uni_modules/lime-painter/components/lime-painter/';
+	// import lPainter from '@/uni_modules/lime-painter/components/lime-painter/';
 
-	const Constants = require("@/utils/constants.js");
-	const Util = require("@/utils/util.js");
-	const Api = require("@/utils/api.js");
-	const Rest = require("@/utils/rest.js");
-	const Auth = require("@/utils/auth.js");
-	const Extend = require("@/utils/extend.js");
+	import Constants from "@/utils/constants.js";
+	import Util from "@/utils/util.js";
+	import Api from "@/utils/api.js";
+	import Rest from "@/utils/rest.js";
+	import Auth from "@/utils/auth.js";
+	import Extend from "@/utils/extend.js";
 
 	export default {
 		components: {
 			JiangqieLoadmore,
 			jiangqieNomore,
-			JiangqieNoData,
-			lPainter
+			JiangqieNoData
 		},
 
 		data() {
@@ -399,7 +398,8 @@
 										Util.toast('已保存');
 									},
 									fail: (res) => {
-										if (res.errMsg && res.errMsg.indexOf('cancel') < 0) {
+										if (res.errMsg && res.errMsg.indexOf('cancel') <
+											0) {
 											Util.toast(res.errMsg);
 										}
 									}
@@ -432,12 +432,15 @@
 				this.isShowPainter = true;
 
 				this.base = {
-					width: '750rpx',
-					height: '1334rpx',
-					backgroundColor: '#E6372F',
+					css: {
+						width: '750rpx',
+						height: '1334rpx',
+						backgroundColor: '#E6372F',
+					},
 					views: [{
 							type: 'view',
 							css: {
+								position: 'absolute',
 								left: '30rpx',
 								top: '234rpx',
 								width: '690rpx',
@@ -449,13 +452,14 @@
 							type: 'text',
 							text: this.post.title,
 							css: {
+								position: 'absolute',
 								left: '30rpx',
-								top: '120rpx',
+								top: '60rpx',
 								width: '690rpx',
 								color: '#FFFFFF',
 								fontSize: '38rpx',
 								textAlign: 'center',
-								maxLines: 1,
+								lineClamp: 1,
 							}
 						},
 						{
@@ -463,6 +467,7 @@
 							src: this.post.thumbnail,
 							mode: 'center',
 							css: {
+								position: 'absolute',
 								left: '30rpx',
 								top: '200rpx',
 								width: '690rpx',
@@ -473,12 +478,13 @@
 							type: 'text',
 							text: this.post.excerpt,
 							css: {
+								position: 'absolute',
 								left: '70rpx',
 								top: '740rpx',
 								width: '610rpx',
 								color: '#000000',
 								fontSize: '28rpx',
-								maxLines: 3,
+								lineClamp: 3,
 							}
 						},
 						{
@@ -486,6 +492,7 @@
 							src: this.acode,
 							mode: 'aspectFill',
 							css: {
+								position: 'absolute',
 								left: '275rpx',
 								top: '920rpx',
 								width: '200rpx',
@@ -496,6 +503,7 @@
 							type: 'text',
 							text: getApp().globalData.appName,
 							css: {
+								position: 'absolute',
 								left: '30rpx',
 								top: '1170rpx',
 								width: '690rpx',

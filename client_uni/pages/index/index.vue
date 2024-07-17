@@ -106,12 +106,12 @@
 						<view v-if="postsLast && postsLast.length>0" class="jiangqie-news-type">
 							最新文章
 						</view>
-						<template v-for="(item, index) in postsLast">
+						<view v-for="(item, index) in postsLast" :key="index">
 							<view v-if="(listMode==1 && false) || (listMode==2) || (listMode==3 && index%5==4)"
-								:key="index" class="jiangqie-news-block image-wide" :data-id="item.id"
+								class="jiangqie-news-block image-wide" :data-id="item.id"
 								@tap.stop="handlerArticleClick">
 								<view class="jiangqie-news-image">
-									<image :src="item.thumbnail" mode="aspectFill">
+									<image :src="item.thumbnail" mode="aspectFill" />
 								</view>
 								<view class="jiangqie-news-text">
 									<view
@@ -131,7 +131,7 @@
 									</view>
 								</view>
 							</view>
-							<view v-else :key="index" class="jiangqie-news-block" :data-id="item.id"
+							<view v-else class="jiangqie-news-block" :data-id="item.id"
 								@tap.stop="handlerArticleClick">
 								<image :src="item.thumbnail" mode="aspectFill" class="jiangqie-news-image"></image>
 								<view class="jiangqie-news-text">
@@ -152,7 +152,7 @@
 									</view>
 								</view>
 							</view>
-						</template>
+						</view>
 					</view>
 				</view>
 				<!--加载loadding-->
@@ -164,12 +164,12 @@
 			<template v-else>
 				<view class="container">
 					<view class="jiangqie-news-view">
-						<template v-for="(item, index) in posts">
+						<view v-for="(item, index) in posts" :key="index">
 							<view v-if="(listMode==1 && false) || (listMode==2) || (listMode==3 && index%5==4)"
-								:key="index" class="jiangqie-news-block image-wide" :data-id="item.id"
+								class="jiangqie-news-block image-wide" :data-id="item.id"
 								@tap.stop="handlerArticleClick">
 								<view class="jiangqie-news-image">
-									<image :src="item.thumbnail" mode="aspectFill">
+									<image :src="item.thumbnail" mode="aspectFill" />
 								</view>
 								<view class="jiangqie-news-text">
 									<view
@@ -188,10 +188,10 @@
 									</view>
 								</view>
 							</view>
-							<view v-else :key="index" class="jiangqie-news-block" :data-id="item.id"
+							<view v-else class="jiangqie-news-block" :data-id="item.id"
 								@tap.stop="handlerArticleClick">
 								<view class="jiangqie-news-image">
-									<image :src="item.thumbnail" mode="aspectFill">
+									<image :src="item.thumbnail" mode="aspectFill" />
 								</view>
 								<view class="jiangqie-news-text">
 									<view
@@ -210,7 +210,7 @@
 									</view>
 								</view>
 							</view>
-						</template>
+						</view>
 					</view>
 				</view>
 				<!--加载loadding-->
@@ -221,7 +221,7 @@
 		</view>
 
 		<view v-if="pop_ad" class="zhugie-pop-cover">
-			<view class="" @click="clickPopAd" class="zhuige-pop-box">
+			<view @click="clickPopAd" class="zhuige-pop-box">
 				<image mode="aspectFit" :src="pop_ad.image"></image>
 				<view>
 					<uni-icons @click="clickPopAdClose" type="close" size="32" color="#FFFFFF"></uni-icons>
@@ -240,20 +240,18 @@
 	 * gitee: https://gitee.com/zhuige_com/jiangqie_kafei
 	 * Copyright © 2020-2024 www.zhuige.com All rights reserved.
 	 */
-	const Constants = require("@/utils/constants.js");
-	const Api = require("@/utils/api.js");
-	const Util = require("@/utils/util.js");
-	const Rest = require("@/utils/rest.js");
+	import Constants from "@/utils/constants.js";
+	import Api from "@/utils/api.js";
+	import Util from "@/utils/util.js";
+	import Rest from "@/utils/rest.js";
 
 	import JiangqieLoadmore from "@/components/loadmore/loadmore";
 	import JiangqieNomore from "@/components/nomore/nomore";
-	import uniNavBar from '@/components/uni-nav-bar/uni-nav-bar.vue'
 
 	export default {
 		components: {
 			JiangqieLoadmore,
-			JiangqieNomore,
-			uniNavBar
+			JiangqieNomore
 		},
 
 		data() {

@@ -7,7 +7,7 @@
  * Copyright © 2020-2024 www.zhuige.com All rights reserved.
  */
 
-const Constant = require("./constants.js");
+import Constant from "./constants.js";
 
 //获取TOKEN
 function getToken() {
@@ -25,7 +25,7 @@ function logout() {
 	uni.setStorageSync(Constant.JQ_USER_KEY, false);
 }
 
-module.exports = {
+export default {
 	//检查登录态
 	checkSession() {
 		uni.checkSession({

@@ -27,10 +27,10 @@
 	 * Copyright © 2020-2024 www.zhuige.com All rights reserved.
 	 */
 
-	const Util = require("@/utils/util.js");
-	const Auth = require("@/utils/auth.js");
-	const Api = require("@/utils/api.js");
-	const Rest = require("@/utils/rest.js");
+	import Util from "@/utils/util.js";
+	import Auth from "@/utils/auth.js";
+	import Api from "@/utils/api.js";
+	import Rest from "@/utils/rest.js";
 
 	export default {
 		data() {

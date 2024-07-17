@@ -83,9 +83,9 @@
 	 * gitee: https://gitee.com/zhuige_com/jiangqie_kafei
 	 * Copyright © 2020-2024 www.zhuige.com All rights reserved.
 	 */
-	const Constants = require("@/utils/constants.js");
-	const Api = require("@/utils/api.js");
-	const Rest = require("@/utils/rest.js");
+	import Constants from "@/utils/constants.js";
+	import Api from "@/utils/api.js";
+	import Rest from "@/utils/rest.js";
 	import JiangqieLoadmore from "@/components/loadmore/loadmore";
 	import JiangqieNomore from "@/components/nomore/nomore";
 	import JiangqieNoData from "@/components/nodata/nodata";

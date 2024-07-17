@@ -36,8 +36,8 @@
 	 * gitee: https://gitee.com/zhuige_com/jiangqie_kafei
 	 * Copyright © 2020-2024 www.zhuige.com All rights reserved.
 	 */
-	const Constant = require("@/utils/constants.js");
-	const Util = require("@/utils/util.js");
+	import Constant from "@/utils/constants.js";
+	import Util from "@/utils/util.js";
 
 	export default {
 		components: {

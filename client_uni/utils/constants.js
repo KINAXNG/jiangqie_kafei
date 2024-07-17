@@ -6,8 +6,8 @@
  * gitee: https://gitee.com/zhuige_com/jiangqie_kafei
  * Copyright © 2020-2024 www.zhuige.com All rights reserved.
  */
-module.exports = {
-	JQ_VERSION: '2.4.12',
+export default {
+	JQ_VERSION: '2.5.2',
 
 	//分页 每页 数量 需要与服务器一致
 	JQ_PER_PAGE_COUNT: 10,

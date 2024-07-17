@@ -53,10 +53,10 @@
 	 * Copyright © 2020-2024 www.zhuige.com All rights reserved.
 	 */
 
-	const Constant = require("@/utils/constants.js");
-	const Util = require("@/utils/util.js");
-	const Api = require("@/utils/api.js");
-	const Rest = require("@/utils/rest.js");
+	import Constant from "@/utils/constants.js";
+	import Util from "@/utils/util.js";
+	import Api from "@/utils/api.js";
+	import Rest from "@/utils/rest.js";
 
 	export default {
 		components: {

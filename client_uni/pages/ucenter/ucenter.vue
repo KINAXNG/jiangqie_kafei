@@ -24,8 +24,8 @@
 			</view>
 		</view>
 		<view class="jiangqie-listbox jiangqie-postcount">
-			<template v-for="(item, index) in menu">
-				<view v-if="item.tp=='views'" :key="index"
+			<view v-for="(item, index) in menu" :key="index">
+				<view v-if="item.tp=='views'"
 					:class="'jiangqie-listblock ' + (item.line=='yes'?'jiangqie-listblock-line':'')" data-track="views"
 					@tap.stop="handlerPostTrack">
 					<view class="jiangqie-listcont">
@@ -36,7 +36,7 @@
 						<image v-if="item.icon" :src="item.icon" mode="aspectFill"></image>
 					</view>
 				</view>
-				<view v-if="item.tp=='likes'" :key="index"
+				<view v-if="item.tp=='likes'"
 					:class="'jiangqie-listblock ' + (item.line=='yes'?'jiangqie-listblock-line':'')" data-track="likes"
 					@tap.stop="handlerPostTrack">
 					<view class="jiangqie-listcont">
@@ -47,7 +47,7 @@
 						<image v-if="item.icon" :src="item.icon" mode="aspectFill"></image>
 					</view>
 				</view>
-				<view v-if="item.tp=='favorites'" :key="index"
+				<view v-if="item.tp=='favorites'"
 					:class="'jiangqie-listblock ' + (item.line=='yes'?'jiangqie-listblock-line':'')"
 					data-track="favorites" @tap.stop="handlerPostTrack">
 					<view class="jiangqie-listcont">
@@ -58,7 +58,7 @@
 						<image v-if="item.icon" :src="item.icon" mode="aspectFill"></image>
 					</view>
 				</view>
-				<view v-if="item.tp=='comments'" :key="index"
+				<view v-if="item.tp=='comments'"
 					:class="'jiangqie-listblock ' + (item.line=='yes'?'jiangqie-listblock-line':'')"
 					data-track="comments" @tap.stop="handlerPostTrack">
 					<view class="jiangqie-listcont">
@@ -69,7 +69,7 @@
 						<image v-if="item.icon" :src="item.icon" mode="aspectFill"></image>
 					</view>
 				</view>
-				<view v-if="item.tp=='about'" :key="index"
+				<view v-if="item.tp=='about'"
 					:class="'jiangqie-listblock ' + (item.line=='yes'?'jiangqie-listblock-line':'')"
 					@tap.stop="handlerAbout">
 					<view class="jiangqie-listcont">
@@ -80,7 +80,7 @@
 						<image v-if="item.icon" :src="item.icon" mode="aspectFill"></image>
 					</view>
 				</view>
-				<view v-if="item.tp=='feedback'" :key="index"
+				<view v-if="item.tp=='feedback'"
 					:class="'jiangqie-listblock ' + (item.line=='yes'?'jiangqie-listblock-line':'')">
 					<view class="jiangqie-listcont">
 						<image src="/static/images/more.png" mode="aspectFill"></image>
@@ -90,7 +90,7 @@
 						<image v-if="item.icon" :src="item.icon" mode="aspectFill"></image>
 					</button>
 				</view>
-				<view v-if="item.tp=='contact'" :key="index"
+				<view v-if="item.tp=='contact'"
 					:class="'jiangqie-listblock ' + (item.line=='yes'?'jiangqie-listblock-line':'')">
 					<view class="jiangqie-listcont">
 						<image src="/static/images/more.png" mode="aspectFill"></image>
@@ -100,7 +100,7 @@
 						<image v-if="item.icon" :src="item.icon" mode="aspectFill"></image>
 					</button>
 				</view>
-				<view v-if="item.tp=='clear'" :key="index"
+				<view v-if="item.tp=='clear'"
 					:class="'jiangqie-listblock ' + (item.line=='yes'?'jiangqie-listblock-line':'')"
 					@tap.stop="handlerClearCache">
 					<view class="jiangqie-listcont">
@@ -111,7 +111,7 @@
 						<image v-if="item.icon" :src="item.icon" mode="aspectFill"></image>
 					</view>
 				</view>
-				<view v-if="item.tp=='score'" :key="index"
+				<view v-if="item.tp=='score'"
 					:class="'jiangqie-listblock ' + (item.line=='yes'?'jiangqie-listblock-line':'')"
 					@tap.stop="handlerClickScore">
 					<view class="jiangqie-listcont">
@@ -122,7 +122,7 @@
 						<image v-if="item.icon" :src="item.icon" mode="aspectFill"></image>
 					</view>
 				</view>
-				<view v-if="item.tp=='page'" :key="index"
+				<view v-if="item.tp=='page'"
 					:class="'jiangqie-listblock ' + (item.line=='yes'?'jiangqie-listblock-line':'')"
 					:data-page_id="item.page_id" @tap.stop="handlerPageClick">
 					<view class="jiangqie-listcont">
@@ -133,7 +133,7 @@
 						<image v-if="item.icon" :src="item.icon" mode="aspectFill"></image>
 					</view>
 				</view>
-				<view v-if="item.tp=='link'" :key="index"
+				<view v-if="item.tp=='link'"
 					:class="'jiangqie-listblock ' + (item.line=='yes'?'jiangqie-listblock-line':'')"
 					:data-link="item.link" @tap.stop="handlerLinkClick">
 					<view class="jiangqie-listcont">
@@ -144,8 +144,8 @@
 						<image v-if="item.icon" :src="item.icon" mode="aspectFill"></image>
 					</view>
 				</view>
-				<view v-else-if="item.tp=='split'" :key="index" class="jiangqie-list-split"></view>
-			</template>
+				<view v-else-if="item.tp=='split'" class="jiangqie-list-split"></view>
+			</view>
 		</view>
 
 		<view class="jiangqie-nomore">
@@ -171,10 +171,10 @@
 	 * Copyright © 2020-2024 www.zhuige.com All rights reserved.
 	 */
 
-	const Auth = require("@/utils/auth.js");
-	const Api = require("@/utils/api.js");
-	const Util = require("@/utils/util.js");
-	const Rest = require("@/utils/rest.js");
+	import Auth from "@/utils/auth.js";
+	import Api from "@/utils/api.js";
+	import Util from "@/utils/util.js";
+	import Rest from "@/utils/rest.js";
 
 	export default {
 		components: {

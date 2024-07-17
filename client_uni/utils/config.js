@@ -12,7 +12,7 @@
  * 读取你的剪切板
  * =====================
  */
-module.exports = {
+export default {
 	//你的域名
 	JQ_DOMAIN: 'xcx.jiangqie.com',
 };
